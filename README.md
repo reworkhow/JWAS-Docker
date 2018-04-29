@@ -1,8 +1,9 @@
 # JWAS-Docker
 
 # General Users
-
+```
 docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng qtlrocks:jwas-docker
+```
 
 # Create Images
 
