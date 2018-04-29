@@ -17,12 +17,12 @@ docker build -f jwas.txt -t jwas-docker .
 ```
 3. tag and push images to dockerhub
 ```bash
-docker tag jwas-docker qtlrocks/jwas-dockers:v0.1
-docker push qtlrocks/jwas-dockers:v0.1
+docker tag jwas-docker qtlrocks/jwas-docker:v0.1
+docker push qtlrocks/jwas-docker:v0.1
 ```
 4. OR save th image to tar, copy and paste, then load it 
 ```bash
-docker save jwas-dockers > jwas-dockers.tar
+docker save jwas-docker > jwas-docker.tar
 docker load --input jwas-dockers.tar
 ```
 # Miscs
