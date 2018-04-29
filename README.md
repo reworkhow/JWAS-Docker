@@ -1,8 +1,10 @@
 # JWAS-Docker
 
 # General Users
+
+The commnad below will `docker pull` the image `qtlrocks/jwas-docker` at first, then run it. 
 ```
-docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng qtlrocks:jwas-docker
+docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng qtlrocks/jwas-docker
 ```
 
 # Create Images
@@ -27,6 +29,11 @@ docker save jwas-docker > jwas-docker.tar
 docker load --input jwas-dockers.tar
 ```
 # Miscs
+
+* download docker image
+```
+docker pull qtlrocks/jwas-docker:v0.1
+```
 
 * run the docker (when jwas-docker is local (pulled))
 ```bash
