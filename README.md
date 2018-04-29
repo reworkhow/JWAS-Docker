@@ -35,11 +35,6 @@ docker load --input jwas-dockers.tar
 docker pull qtlrocks/jwas-docker:v0.1
 ```
 
-* run the docker (when jwas-docker is local (pulled))
-```bash
-docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng jwas-docker
-```
-
 * make an alias
 ```bash
 alias jwasdocker="docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng jwas-docker"
