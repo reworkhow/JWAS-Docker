@@ -2,7 +2,7 @@
 
 # General Users
 
-The commnad below will `docker pull` the image `qtlrocks/jwas-docker` at first, then run it. 
+The command below will `docker pull` the image `qtlrocks/jwas-docker` at first, then run it. 
 ```
 docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng qtlrocks/jwas-docker
 ```
