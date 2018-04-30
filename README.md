@@ -4,8 +4,15 @@
 
 The command below will `docker pull` the image `qtlrocks/jwas-docker` at first, then run it. 
 ```
-docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng qtlrocks/jwas-docker
+docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker
 ```
+
+!!! note
+    
+    ```
+    docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng qtlrocks/jwas-docker
+    ```
+    
 
 # Create Images
 
