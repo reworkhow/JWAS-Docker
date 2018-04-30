@@ -2,9 +2,9 @@
 
 # General Users
 
-The command below will `docker pull` the image `qtlrocks/jwas-docker` at first, then run it. 
+The command below will `docker pull` the image `qtlrocks/jwas-docker:v0.1` at first, then run it. 
 ```
-docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker
+docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker:v0.1
 ```
 
 !!! note
