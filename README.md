@@ -4,7 +4,7 @@
 
 The command below will `docker pull` the image `qtlrocks/jwas-docker:v0.1` at first, then run it. 
 ```
-docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker:v0.1
+docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker:stable
 ```
 
 !!! note
@@ -18,7 +18,7 @@ docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker:v0.1
 
 1. create a docker image for julia and jupyter notebook
 ```bash
-docker build -f jupyerjulia.txt -t jupyter-julia .
+docker build -f jupyer-julia.txt -t jupyter-julia .
 ```
 
 2. create a docker image for JWAS based on jupyter-julia
