@@ -1,6 +1,6 @@
 FROM jupyter-julia
 
-LABEL maintainer="rohan <rohanLuigi@gmail.com>"
+LABEL maintainer="Hao Cheng <qtlcheng@ucdavis.edu>"
 
 RUN	julia -e 'Pkg.update()' && \ 
 	julia -e 'Pkg.add("JWAS")' && \
