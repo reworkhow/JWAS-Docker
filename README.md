@@ -57,6 +57,24 @@ docker load --input jwas-dockers.tar
 
 # Miscs
 
+* list all local docker images 
+
+```
+docker images
+```
+
+* delete a local docker image
+
+```
+docker rmi qtlrocks/jwas-docker
+```
+
+or
+
+```
+docker rmi IMAGE ID 
+```
+
 * download docker image
 
 for the latest version
