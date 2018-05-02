@@ -1,20 +1,26 @@
 # JWAS-Docker
 
-# General Users
+# Guide for General Users
 
-The command below will `docker pull` the image `qtlrocks/jwas-docker:v0.1` at first, then run it. 
+The command below update `local qtl/jwas-docker` to the latest version and run it.
 ```
-docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker:stable
+docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker
 ```
 
-!!! note
-    
-    ```
+
+* add local directories    
+    ```bash
     docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng qtlrocks/jwas-docker
     ```
+* use a different version of `qtl/jwas-docker`, e.g., `v0.1-beta`, not `latest` 
+    ```bash
+    docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker:v0.1-beta
+    ```
     
 
-# Create Images
+# Guide for Authors
+
+## Create Images
 
 1. create a docker image for julia and jupyter notebook
 ```bash
