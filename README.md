@@ -39,15 +39,15 @@ docker build -f jwas.txt -t qtlrocks/jwas-docker .
 
 3. tag and push images to dockerhub
 
-    * for latest version
-```dockerfile
-docker push qtlrocks/jwas-docker
-```
+    * for the latest version
+    ```dockerfile
+    docker push qtlrocks/jwas-docker
+    ```
     * for a different version
-```dockerfile
-docker tag jwas-docker qtlrocks/jwas-docker:v0.1-beta
-docker push qtlrocks/jwas-docker:v0.1-beta
-```
+    ```dockerfile
+    docker tag jwas-docker qtlrocks/jwas-docker:v0.1-beta
+    docker push qtlrocks/jwas-docker:v0.1-beta
+    ```
 
 4. OR save th image to tar, copy and paste, then load it 
 ```bash
@@ -78,14 +78,15 @@ docker rmi IMAGE ID
 * download docker image
 
     * for the latest version
-```
-docker pull qtlrocks/jwas-docker
-```
+    ```
+    docker pull qtlrocks/jwas-docker
+    ```
 
    * for a different version
-```
-docker pull qtlrocks/jwas-docker:v0.1-beta
-```
+   
+    ```
+    docker pull qtlrocks/jwas-docker:v0.1-beta
+    ```
 
 * make an alias
 ```bash
