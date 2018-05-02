@@ -2,11 +2,13 @@
 
 # Guide for General Users
 
-
+## Basics
 The command below update `local qtl/jwas-docker` to the latest version and run it.
 ```
 docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker
 ```
+
+## Advances
 
 You can also use the commands below to add a local directory when you run the docker image or use a different version of the image.
 
