@@ -39,7 +39,7 @@ docker build -f jwas.txt -t qtlrocks/jwas-docker .
 
 3. tag and push images to dockerhub
 
-    * for the latest version
+    * for the latest version (by default, the image created in step 2 is the latest version)
     ```dockerfile
     docker push qtlrocks/jwas-docker
     ```
