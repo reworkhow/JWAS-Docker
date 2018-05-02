@@ -39,11 +39,11 @@ docker build -f jwas.txt -t qtlrocks/jwas-docker .
 
 3. tag and push images to dockerhub
 
-for latest version
+    * for latest version
 ```dockerfile
 docker push qtlrocks/jwas-docker
 ```
-for a different version
+    * for a different version
 ```dockerfile
 docker tag jwas-docker qtlrocks/jwas-docker:v0.1-beta
 docker push qtlrocks/jwas-docker:v0.1-beta
@@ -77,11 +77,12 @@ docker rmi IMAGE ID
 
 * download docker image
 
-for the latest version
+    * for the latest version
 ```
 docker pull qtlrocks/jwas-docker
 ```
-for a different version
+
+   * for a different version
 ```
 docker pull qtlrocks/jwas-docker:v0.1-beta
 ```
