@@ -15,4 +15,4 @@ RUN	julia -e 'Pkg.update()' && \
     	julia -e 'using Plots' && \
     	fix-permissions $JULIA_PKGDIR 
 
-ADD --chown=jovyan:users ./JWAS_notebooks /home/jovyan/JWAS_notebooks
+ADD --chown=jovyan:users ./notebooks /home/jovyan/notebooks
