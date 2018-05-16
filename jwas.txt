@@ -4,12 +4,15 @@ LABEL maintainer="Hao Cheng <qtlcheng@ucdavis.edu>"
 
 RUN	julia -e 'Pkg.update()' && \ 
 	julia -e 'Pkg.add("JWAS")' && \
+	julia -e 'Pkg.add("PyPlot")' && \
+	julia -e 'Pkg.add("Plots")' && \
     	julia -e 'Pkg.checkout("JWAS")' && \
 	julia -e 'Pkg.add("XSim")' && \
     	julia -e 'Pkg.checkout("XSim")' && \
     	# Precompile JWAS  \
     	julia -e 'using JWAS' && \
     	julia -e 'using XSim' && \
+    	julia -e 'using Plots' && \
     	fix-permissions $JULIA_PKGDIR 
 
 ADD --chown=jovyan:users ./JWAS_notebooks /home/jovyan/JWAS_notebooks
