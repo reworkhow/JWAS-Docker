@@ -1,6 +1,7 @@
 # Docker images for JWAS and XSim on IJulia
 
 These docker image files were created by Hailin Su, Rohan Fernando and Hao Cheng. 
+
 Two version of docker files are available to build jwas-docker image. This docker file in `dockerfile-jwas-mini` built the image from ubuntu and the final size is ~800 Mb comparing to `dockerfile-jwas-large`.
 
 ## Launch
