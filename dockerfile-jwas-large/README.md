@@ -1,5 +1,11 @@
 # JWAS-Docker
 
+This Docker is made based on [Jupyter Notebook Data Science Stack](https://hub.docker.com/r/jupyter/datascience-notebook/). It contains
+
+* Julia v0.6.2
+* Jupyter Notebook 5.2.x
+* JWAS 0.3.1
+
 # Guide for General Users
 
 ## Basics
