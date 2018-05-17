@@ -1,8 +1,9 @@
 FROM ubuntu
 
 # mini version by Hailin Su
+# modified from Hao Cheng's and RLF's original version
 
-LABEL maintainer="RLF"
+LABEL maintainer="Hailin Su <cbkmephisto@gmail.com>"
 
 # Set when building on Travis so that certain long-running build steps can
 # be skipped to shorten build time.
@@ -43,18 +44,16 @@ WORKDIR /home/ubuntu
 
 RUN echo 'Pkg.init();Pkg.update(); Pkg.add("IJulia"); \
     Pkg.add("JWAS"); Pkg.add("XSim"); Pkg.checkout("JWAS"); Pkg.checkout("XSim"); \
-    Pkg.add("Plots");\
+    Pkg.add("Plots");Pkg.add("PyPlot");\
     println("==== initializing julia packages IJulia, JWAS, and XSim (this will take a while without output)");\
-    using IJulia; using JWAS; using XSim;println(" + [OK] finalizing...")' > install.jl &&\
+    using IJulia;using JWAS;using XSim;using Plots;using PyPlot;println(" + [OK] finalizing...")' > install.jl &&\
     julia install.jl && rm install.jl
 
-ADD --chown=ubuntu:users ../notebooks /home/ubuntu/notebooks
+ADD --chown=ubuntu:users notebooks /home/ubuntu/notebooks
 
+EXPOSE 8888/tcp
+EXPOSE 8888/udp
 
-EXPOSE 8008/tcp
-EXPOSE 8008/udp
+CMD jupyter notebook --no-browser --ip 0.0.0.0 --port 8888
 
-CMD jupyter notebook --no-browser --ip 0.0.0.0 --port 8008
-
-RUN echo '\n\ndocker run -it --rm -p 8008:8008 jwas:mini\n\n'
-
+RUN echo '\n\ndocker run -it --rm -p 8888:8888 qtlrocks/jwas-docker\n\n'
