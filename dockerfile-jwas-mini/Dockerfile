@@ -1,8 +1,9 @@
 FROM ubuntu
 
 # mini version by Hailin Su
+# modified from Hao Cheng's and RLF's original version
 
-LABEL maintainer="RLF"
+LABEL maintainer="Hailin Su <cbkmephisto@gmail.com>"
 
 # Set when building on Travis so that certain long-running build steps can
 # be skipped to shorten build time.
@@ -51,10 +52,10 @@ RUN echo 'Pkg.init();Pkg.update(); Pkg.add("IJulia"); \
 ADD --chown=ubuntu:users ../notebooks /home/ubuntu/notebooks
 
 
-EXPOSE 8008/tcp
-EXPOSE 8008/udp
+EXPOSE 8888/tcp
+EXPOSE 8888/udp
 
-CMD jupyter notebook --no-browser --ip 0.0.0.0 --port 8008
+CMD jupyter notebook --no-browser --ip 0.0.0.0 --port 8888
 
-RUN echo '\n\ndocker run -it --rm -p 8008:8008 jwas:mini\n\n'
+RUN echo '\n\ndocker run -it --rm -p 8888:8888 jwas:mini\n\n'
 
