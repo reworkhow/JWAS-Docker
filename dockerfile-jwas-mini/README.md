@@ -59,10 +59,12 @@ If JWAS-docker is launched on a server and you're trying to use it in another ma
 
 If you're trying to copy/paste one of the following urls into your browser, remember to replace the domain name `www.example.com` or ip address `66.66.66.66` of the server, and the string after `token=`, according to your real instance.
 
-- If launched rom your local machine
-    >http://0.0.0.0:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
-or
-    >http://127.0.0.1:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
+- If launched from your local machine
+  >http://0.0.0.0:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
+
+  or
+
+  >http://127.0.0.1:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
 
 - if launched from a server with domain name `www.example.com`
     >http://www.example.com:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
@@ -70,7 +72,7 @@ or
 - if launched from a server with IP address `66.66.66.66`
     >http://66.66.66.66:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
 
-## Iteractive launch and visit
+## Iteractive launching and visiting
 For those who may want to run scripts using linux commands in Bash,
 ```bash
 docker run -it --rm -v `pwd`:/home/ubuntu/work qtlrocks/jwas-docker bash
