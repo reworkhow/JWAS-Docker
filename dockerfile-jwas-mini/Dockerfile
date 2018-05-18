@@ -17,7 +17,7 @@ RUN echo "12" > inp &&\
     echo "4" >> inp &&\
     apt-get update &&\
     apt-get install --no-install-recommends -y \
-    libc-dev wget make gcc jupyter-client jupyter-notebook < inp &&\
+    libc-dev libxt6 unzip wget make gcc jupyter-client jupyter-notebook < inp &&\
     rm -rf /var/lib/apt/lists/* inp
 
 ENV JULIA_PKGDIR=/opt/julia
@@ -44,7 +44,7 @@ WORKDIR /home/ubuntu
 
 RUN echo 'Pkg.init();Pkg.update(); Pkg.add("IJulia"); \
     Pkg.add("JWAS"); Pkg.add("XSim"); Pkg.checkout("JWAS"); Pkg.checkout("XSim"); \
-    Pkg.add("Plots");\
+    Pkg.add("GR");Pkg.add("Plots");\
     println("==== initializing julia packages IJulia, JWAS, and XSim (this will take a while without output)");\
     using IJulia;using JWAS;using XSim;using Plots;println(" + [OK] finalizing...")' > install.jl &&\
     julia install.jl && rm install.jl
