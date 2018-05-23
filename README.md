@@ -29,7 +29,8 @@ This launch command is also provided in the script file `dockerfile-jwas-mini/la
 ## Visit
 It is expected to prompt something look like this
 
-```[I 10:41:54.774 NotebookApp] Writing notebook server cookie secret to /home/ubuntu/.local/share/jupyter/runtime/notebook_cookie_secret
+```
+[I 10:41:54.774 NotebookApp] Writing notebook server cookie secret to /home/ubuntu/.local/share/jupyter/runtime/notebook_cookie_secret
 [I 10:41:54.920 NotebookApp] Serving notebooks from local directory: /home/ubuntu
 [I 10:41:54.920 NotebookApp] 0 active kernels
 [I 10:41:54.920 NotebookApp] The Jupyter Notebook is running at:
@@ -42,7 +43,7 @@ It is expected to prompt something look like this
         http://0.0.0.0:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
 ```
 
-Then, open the url in an internect browser (IE, Firefox, Chrome, Safari, etc) if JWAS-docker is launched on your local machine.
+Then, open the url in an internet browser (IE, Firefox, Chrome, Safari, etc) if JWAS-docker is launched on your local machine.
 
 If JWAS-docker is launched on a server and you're trying to use it in another machine, change the IP address from `0.0.0.0` to the domain name (or IP address) of the server.
 
@@ -63,7 +64,7 @@ If you're trying to copy/paste one of the following urls into your browser, reme
 - if launched from a server with IP address `66.66.66.66`
     >http://66.66.66.66:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
 
-## Iteractive launching and visiting
+## Interactive launching and visiting
 For those who may want to run scripts using linux commands in Bash,
 ```bash
 docker run -it --rm -v `pwd`:/home/ubuntu/work qtlrocks/jwas-docker bash
