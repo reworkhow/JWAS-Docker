@@ -21,39 +21,39 @@ RUN echo "12" > inp &&\
     rm -rf /var/lib/apt/lists/* inp
 
 ENV JULIA_PKGDIR=/opt/julia
-ENV JULIA_VERSION=0.6.2
+ENV JULIA_VERSION=1.0.0
 
 # download and unpack julia standalone version, and make system-wide link
 RUN mkdir /opt/julia-${JULIA_VERSION} && \
     cd /tmp && \
     wget -q https://julialang-s3.julialang.org/bin/linux/x64/`echo ${JULIA_VERSION} | cut -d. -f 1,2`/julia-${JULIA_VERSION}-linux-x86_64.tar.gz && \
-    echo "dc6ec0b13551ce78083a5849268b20684421d46a7ec46b17ec1fab88a5078580 *julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | sha256sum -c - && \
+    echo "bea4570d7358016d8ed29d2c15787dbefaea3e746c570763e7ad6040f17831f3 *julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | sha256sum -c - && \
     tar xzf julia-${JULIA_VERSION}-linux-x86_64.tar.gz -C /opt/julia-${JULIA_VERSION} --strip-components=1 && \
     rm /tmp/julia-${JULIA_VERSION}-linux-x86_64.tar.gz
 RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia
 
 # less-prev user
-RUN useradd -m ubuntu
+RUN useradd -m jovyan
 # Create JULIA_PKGDIR
-RUN mkdir $JULIA_PKGDIR && chown -R ubuntu $JULIA_PKGDIR
+RUN mkdir $JULIA_PKGDIR && chown -R jovyan $JULIA_PKGDIR
 
 # init julia packages for less-prev user
-USER ubuntu
+USER jovyan
 
-WORKDIR /home/ubuntu
+WORKDIR /home/jovyan
 
-RUN echo 'Pkg.init();Pkg.update(); Pkg.add("IJulia"); \
-    Pkg.add("JWAS"); Pkg.add("XSim"); Pkg.checkout("JWAS"); Pkg.checkout("XSim"); \
-    Pkg.add("GR");Pkg.add("UnicodePlots");Pkg.add("Plots");\
-    println("==== initializing julia packages IJulia, JWAS, and XSim (this will take a while without output)");\
-    using IJulia;using JWAS;using XSim;using Plots;println(" + [OK] finalizing...")' > install.jl &&\
+RUN echo 'using Pkg; Pkg.update(); \
+    Pkg.add("IJulia"); \
+    Pkg.add("JWAS"); \
+    Pkg.add("Gadfly");\
+	Pkg.add("DataFrames"); Pkg.add("CSV");\
+    println("==== initializing julia packages IJulia, JWAS (this will take a while without output)");\
+    using IJulia; using JWAS; using Gadfly; using DataFrames; using CSV; println(" + [OK] finalizing...")' > install.jl &&\
     julia install.jl && rm install.jl
 
-ADD --chown=ubuntu:users notebooks /home/ubuntu/notebooks
+ADD --chown=jovyan:users ./notebooks /home/jovyan/notebooks
 
 EXPOSE 8888/tcp
 EXPOSE 8888/udp
 
 CMD jupyter notebook --no-browser --ip 0.0.0.0 --port 8888
-
-RUN echo '\n\ndocker run -it --rm -p 8888:8888 qtlrocks/jwas-docker\n\n'

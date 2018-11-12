@@ -1,9 +1,10 @@
 # Docker images for JWAS and XSim on IJulia
 
+Two versions of jwas-docker images are available. The `latest` version contains Julia, Python, and R. The `mini` version (~990 Mb) contain minimum necessary tools to run JWAS. 
 
 # Guide for General Users
 
-These docker image files were created by Hailin Su, Rohan Fernando and Hao Cheng.
+These docker image files were created by Hailin Su, Hao Cheng, and Rohan Fernando.
 
 Two version of docker files are available to build jwas-docker image. This docker file in `dockerfile-jwas-mini` built the image from ubuntu and the final size is ~990 Mb comparing to `dockerfile-jwas-large`.
 
@@ -22,26 +23,25 @@ docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker
 ```
 
 ###### add local directories    
-The `-v` option can mount your local working directory into the docker container, please see the [docker help page](https://docs.docker.com/engine/reference/commandline/run/#mount-volume--v---read-only) for more information. The working dir inside the image is `/home/ubuntu`, so after `cd` into your working directory (containing data files) on your local machine or a server,
+The `-v` option can mount your local working directory into the docker container, please see the [docker help page](https://docs.docker.com/engine/reference/commandline/run/#mount-volume--v---read-only) for more information. The working dir inside the image is `/home/jovyan`, so after `cd` into your working directory (containing data files) on your local machine or a server,
 
 ```bash
-docker run -it --rm -p 8888:8888 -v `pwd`:/home/ubuntu/work qtlrocks/jwas-docker
-#docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng qtlrocks/jwas-docker
+docker run -it --rm -p 8888:8888 -v `pwd`:/home/jovyan/work qtlrocks/jwas-docker
 ```
 
 This launch command is also provided in the script file `dockerfile-jwas-mini/launch_docker_jwas_mini_jupyter_notebook.sh`.
 
-##  Launch (Bash)
+## Launch (Bash)
 For those who may want to run scripts using linux commands in Bash,
 ```bash
-docker run -it --rm -v `pwd`:/home/ubuntu/work qtlrocks/jwas-docker bash
+docker run -it --rm -v `pwd`:/home/jovyan/work qtlrocks/jwas-docker bash
 ```
 
-## Launch (versions)
-use a different version of `qtl/jwas-docker`, e.g., `v0.1-beta`, not `latest`
+## Launch (different versions)
+use a different version of `qtl/jwas-docker`, e.g., `mini`, not `latest`
 
 ```dockerfile
-docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker:v0.1-beta
+docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker:mini
 ```
 
 
@@ -49,8 +49,8 @@ docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker:v0.1-beta
 It is expected to prompt something look like this
 
 ```
-[I 10:41:54.774 NotebookApp] Writing notebook server cookie secret to /home/ubuntu/.local/share/jupyter/runtime/notebook_cookie_secret
-[I 10:41:54.920 NotebookApp] Serving notebooks from local directory: /home/ubuntu
+[I 10:41:54.774 NotebookApp] Writing notebook server cookie secret to /home/jovyan/.local/share/jupyter/runtime/notebook_cookie_secret
+[I 10:41:54.920 NotebookApp] Serving notebooks from local directory: /home/jovyan
 [I 10:41:54.920 NotebookApp] 0 active kernels
 [I 10:41:54.920 NotebookApp] The Jupyter Notebook is running at:
 [I 10:41:54.920 NotebookApp] http://0.0.0.0:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
@@ -86,16 +86,20 @@ If you're trying to copy/paste one of the following urls into your browser, reme
 
 # Guide for Authors
 
+Two version of docker files are available to build jwas-docker image. `dockerfile-jwas-large` is built from `jupyter/datascience-notebook`. This docker file in `dockerfile-jwas-mini` built the image from ubuntu and the final size is ~990 Mb comparing to `dockerfile-jwas-large`.
+
 ## Create Images
 
 1. create a docker image for julia and jupyter notebook
 ```bash
 docker build -f jupyer-julia.txt -t jupyter-julia .
+#docker build -t qtlrocks/jwas-docker .
 ```
 
 2. create a docker image for JWAS based on jupyter-julia
 ```bash
 docker build -f jwas.txt -t qtlrocks/jwas-docker .
+#docker build -t qtlrocks/jwas-docker .
 ```
 
 3. tag and push images to dockerhub
