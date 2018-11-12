@@ -29,8 +29,6 @@ The `-v` option can mount your local working directory into the docker container
 docker run -it --rm -p 8888:8888 -v `pwd`:/home/jovyan/work qtlrocks/jwas-docker
 ```
 
-This launch command is also provided in the script file `dockerfile-jwas-mini/launch_docker_jwas_mini_jupyter_notebook.sh`.
-
 ## Launch (Bash)
 For those who may want to run scripts using linux commands in Bash,
 ```bash
