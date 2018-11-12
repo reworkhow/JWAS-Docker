@@ -1,6 +1,6 @@
 # Docker images for JWAS and XSim on IJulia
 
-Two versions of jwas-docker images are available. The `latest` version contains Julia, Python, and R. The `mini` version (~990 Mb) contain minimum necessary tools to run JWAS. 
+Two versions of jwas-docker images are available. The `latest` version contains Julia, Python, and R. The `mini` version (~990 Mb) contains minimum necessary tools to run JWAS. 
 
 # Guide for General Users
 
