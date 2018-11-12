@@ -1,6 +1,9 @@
 # Docker images for JWAS and XSim on IJulia
 
-These docker image files were created by Hailin Su, Rohan Fernando and Hao Cheng. 
+
+# Guide for General Users
+
+These docker image files were created by Hailin Su, Rohan Fernando and Hao Cheng.
 
 Two version of docker files are available to build jwas-docker image. This docker file in `dockerfile-jwas-mini` built the image from ubuntu and the final size is ~990 Mb comparing to `dockerfile-jwas-large`.
 
@@ -10,7 +13,7 @@ To get the newest version, please pull the JWAS-Docker image
 docker pull qtlrocks/jwas-docker
 ```
 
-## Launch
+## Launch (Jupyter Notebook)
 
 The command below update local qtlrocks/jwas-docker to the latest version and run it.
 
@@ -18,15 +21,31 @@ The command below update local qtlrocks/jwas-docker to the latest version and ru
 docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker
 ```
 
+###### add local directories    
 The `-v` option can mount your local working directory into the docker container, please see the [docker help page](https://docs.docker.com/engine/reference/commandline/run/#mount-volume--v---read-only) for more information. The working dir inside the image is `/home/ubuntu`, so after `cd` into your working directory (containing data files) on your local machine or a server,
 
 ```bash
 docker run -it --rm -p 8888:8888 -v `pwd`:/home/ubuntu/work qtlrocks/jwas-docker
+#docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng qtlrocks/jwas-docker
 ```
 
 This launch command is also provided in the script file `dockerfile-jwas-mini/launch_docker_jwas_mini_jupyter_notebook.sh`.
 
-## Visit
+##  Launch (Bash)
+For those who may want to run scripts using linux commands in Bash,
+```bash
+docker run -it --rm -v `pwd`:/home/ubuntu/work qtlrocks/jwas-docker bash
+```
+
+## Launch (versions)
+use a different version of `qtl/jwas-docker`, e.g., `v0.1-beta`, not `latest`
+
+```dockerfile
+docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker:v0.1-beta
+```
+
+
+## Visit (Jupyter Notebook)
 It is expected to prompt something look like this
 
 ```
@@ -36,8 +55,8 @@ It is expected to prompt something look like this
 [I 10:41:54.920 NotebookApp] The Jupyter Notebook is running at:
 [I 10:41:54.920 NotebookApp] http://0.0.0.0:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
 [I 10:41:54.920 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-[C 10:41:54.921 NotebookApp] 
-    
+[C 10:41:54.921 NotebookApp]
+
     Copy/paste this URL into your browser when you connect for the first time,
     to login with a token:
         http://0.0.0.0:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
@@ -64,10 +83,77 @@ If you're trying to copy/paste one of the following urls into your browser, reme
 - if launched from a server with IP address `66.66.66.66`
     >http://66.66.66.66:8888/?token=75ad671f75b4c47be70591f46bec604997d8a9bd9dd51f0d
 
-## Interactive launching and visiting
-For those who may want to run scripts using linux commands in Bash,
+
+# Guide for Authors
+
+## Create Images
+
+1. create a docker image for julia and jupyter notebook
 ```bash
-docker run -it --rm -v `pwd`:/home/ubuntu/work qtlrocks/jwas-docker bash
+docker build -f jupyer-julia.txt -t jupyter-julia .
 ```
 
-This launch command is also provided in the script file `dockerfile-jwas-mini/launch_docker_jwas_mini_CLI.sh`.
+2. create a docker image for JWAS based on jupyter-julia
+```bash
+docker build -f jwas.txt -t qtlrocks/jwas-docker .
+```
+
+3. tag and push images to dockerhub
+
+* for the latest version (by default, the image created in step 2 is the latest version)
+```bash
+docker push qtlrocks/jwas-docker
+```
+* for a different version
+```bash
+docker tag jwas-docker qtlrocks/jwas-docker:v0.1-beta
+docker push qtlrocks/jwas-docker:v0.1-beta
+```
+
+4. OR save th image to tar, copy and paste, then load it
+```bash
+docker save qtlrocks/jwas-docker > jwas-docker.tar
+docker load --input jwas-dockers.tar
+```
+
+## Miscs
+
+* list all local docker images
+
+```bash
+docker images
+```
+
+* delete a local docker image
+
+```bash
+docker rmi qtlrocks/jwas-docker
+```
+
+or
+
+```bash
+docker rmi IMAGE ID
+```
+
+* download docker image
+
+* for the latest version
+
+```bash
+docker pull qtlrocks/jwas-docker
+```
+
+* for a different version
+
+```bash
+docker pull qtlrocks/jwas-docker:v0.1-beta
+```
+
+* make an alias
+
+```bash
+alias jwasdocker="docker run -it --rm -p 8888:8888 -v /Users/qtlcheng:/home/jovyan/qtlcheng qtlrocks/jwas-docker"
+```
+
+* https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html

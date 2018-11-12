@@ -2,7 +2,8 @@ FROM jupyter-julia
 
 LABEL maintainer="Hao Cheng <qtlcheng@ucdavis.edu>"
 
-RUN	julia -e 'Pkg.update()' && \ 
+RUN	julia -e 'using Pkg' && \ 
+	julia -e 'Pkg.update()' && \ 
 	julia -e 'Pkg.add("JWAS")' && \
 	julia -e 'Pkg.add("PyPlot")' && \
 	julia -e 'Pkg.add("Plots")' && \
