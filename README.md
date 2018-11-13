@@ -1,12 +1,9 @@
 # Docker images for JWAS and XSim on IJulia
 
-Two versions of jwas-docker images are available. The `latest` version contains Julia, Python, and R. The `mini` version (~990 Mb) contain minimum necessary tools to run JWAS. 
+Two versions of jwas-docker images are available. The `latest` version (6 Gb) contains Julia, Python, and R. The `mini` version (~990 Mb) contains minimum necessary tools to run JWAS.jl. These docker image files were created by Hailin Su, Hao 
+Cheng, and Rohan Fernando.
 
 # Guide for General Users
-
-These docker image files were created by Hailin Su, Hao Cheng, and Rohan Fernando.
-
-Two version of docker files are available to build jwas-docker image. This docker file in `dockerfile-jwas-mini` built the image from ubuntu and the final size is ~990 Mb comparing to `dockerfile-jwas-large`.
 
 ## Install
 To get the newest version, please pull the JWAS-Docker image
@@ -23,13 +20,11 @@ docker run -it --rm -p 8888:8888 qtlrocks/jwas-docker
 ```
 
 ###### add local directories    
-The `-v` option can mount your local working directory into the docker container, please see the [docker help page](https://docs.docker.com/engine/reference/commandline/run/#mount-volume--v---read-only) for more information. The working dir inside the image is `/home/jovyan`, so after `cd` into your working directory (containing data files) on your local machine or a server,
+The `-v` option can mount your local working directory into the docker container, please see the [docker help page](https://docs.docker.com/engine/reference/commandline/run/#mount-volume--v---read-only) for more information. The home directory inside the image is `/home/jovyan`, so after `cd` into your working directory (containing data files) on your local machine or a server,
 
 ```bash
 docker run -it --rm -p 8888:8888 -v `pwd`:/home/jovyan/work qtlrocks/jwas-docker
 ```
-
-This launch command is also provided in the script file `dockerfile-jwas-mini/launch_docker_jwas_mini_jupyter_notebook.sh`.
 
 ## Launch (Bash)
 For those who may want to run scripts using linux commands in Bash,
@@ -142,16 +137,9 @@ docker rmi IMAGE ID
 
 * download docker image
 
-* for the latest version
-
 ```bash
-docker pull qtlrocks/jwas-docker
-```
-
-* for a different version
-
-```bash
-docker pull qtlrocks/jwas-docker:v0.1-beta
+docker pull qtlrocks/jwas-docker           #latest version
+docker pull qtlrocks/jwas-docker:v0.1-beta #specific version 
 ```
 
 * make an alias
