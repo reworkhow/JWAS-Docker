@@ -12,6 +12,9 @@ RUN	julia -e 'using Pkg; Pkg.update()' && \
 	julia -e 'using Pkg; Pkg.add("Distributions")' && \
 	julia -e 'using Pkg; Pkg.add("JWAS")' && \
 	julia -e 'using Pkg; Pkg.add("XSim")' && \
+        # checkout latest master branch
+        julia -e 'using Pkg; Pkg.add(PackageSpec(name="JWAS", rev="master"))' && \ 
+        julia -e 'using Pkg; Pkg.add(PackageSpec(name="XSim", rev="master"))' && \ 
         # Precompile JWAS  \
   	julia -e 'using Pkg; using JWAS' && \
   	julia -e 'using Pkg; using XSim' && \

@@ -48,6 +48,8 @@ RUN echo 'using Pkg; Pkg.update(); \
     Pkg.add("XSim"); \
     Pkg.add("Gadfly");\
     Pkg.add("DataFrames"); Pkg.add("CSV");Pkg.add("DataFrames");Pkg.add("Distributions");\
+    Pkg.add(PackageSpec(name="JWAS", rev="master"));\
+    Pkg.add(PackageSpec(name="XSim", rev="master"));\ 
     println("==== initializing julia packages IJulia, JWAS (this will take a while without output)");\
     using IJulia; using JWAS; using Gadfly; using DataFrames; using CSV; using Distributions; println(" + [OK] finalizing...")' > install.jl &&\
     julia install.jl && rm install.jl
