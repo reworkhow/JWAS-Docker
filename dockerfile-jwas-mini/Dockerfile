@@ -16,14 +16,19 @@ USER root
 RUN echo "12" > inp &&\
     echo "4" >> inp &&\
     apt-get update &&\
-    apt-get install --no-install-recommends -y \
+    apt-get install --no-install-recommends -y python3-pip python3-setuptools python3-wheel \
     libc-dev libxt6 unzip wget make gcc jupyter-client jupyter-notebook < inp &&\
     rm -rf /var/lib/apt/lists/* inp
 
+# install jupyterlab
+RUN pip3 install jupyterlab
+# When using a version of Jupyter Notebook earlier than 5.3, the following command must be run after installation to enable the JupyterLab server extension:
+RUN jupyter serverextension enable --py jupyterlab --sys-prefix
+
+# download and unpack julia standalone version, and make system-wide link
 ENV JULIA_PKGDIR=/opt/julia
 ENV JULIA_VERSION=1.0.0
 
-# download and unpack julia standalone version, and make system-wide link
 RUN mkdir /opt/julia-${JULIA_VERSION} && \
     cd /tmp && \
     wget -q https://julialang-s3.julialang.org/bin/linux/x64/`echo ${JULIA_VERSION} | cut -d. -f 1,2`/julia-${JULIA_VERSION}-linux-x86_64.tar.gz && \
@@ -59,4 +64,4 @@ ADD --chown=jovyan:users ./notebooks /home/jovyan/notebooks
 EXPOSE 8888/tcp
 EXPOSE 8888/udp
 
-CMD jupyter notebook --no-browser --ip 0.0.0.0 --port 8888
+CMD jupyter lab --no-browser --ip 0.0.0.0 --port 8888
